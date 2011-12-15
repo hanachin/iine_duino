@@ -1,0 +1,17 @@
+{
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.1"
+    , "jade": ">= 0.0.1"
+    , "arduino": ">= 0.2.3"
+    , "mongoose": ">= 2.4.2"
+  }
+  , "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/hapticdata/node-arduino.git"
+    }
+  ]
+}

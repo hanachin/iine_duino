@@ -1,0 +1,13 @@
+span date
+input#datepicker(type="text")
+span start_time
+input#start_time(type="text")
+span stop_time
+input#stop_time(type="text")
+br
+span count
+input#count(type="text", value='00:00:00', size="8")
+button.time_button#start_button start
+button.time_button#stop_button(style="display:none") stop
+script(type='text/javascript', src='/javascripts/graph.js')
+#chart
