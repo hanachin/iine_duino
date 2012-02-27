@@ -21,6 +21,11 @@
     });
   };
 
+  exports.count = function(req, res) {
+    (new Like).save(function(err) {});
+    return res.end("");
+  };
+
   exports.likes = function(req, res) {
     var cond, end, start;
     start = new Date(req.params.start);

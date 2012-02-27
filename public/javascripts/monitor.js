@@ -1,5 +1,5 @@
 (function() {
-  var chart_data, chart_option, count, plot, prev, socket, status, x;
+  var chart_data, chart_option, count, host, plot, prev, socket, status, x;
 
   status = $("#status");
 
@@ -38,7 +38,9 @@
 
   setInterval(plot, 1000);
 
-  socket = io.connect('http://localhost:3000');
+  host = location.href.match(/localhost/) ? "http://" + location.host + "/" : 'http://xhago.herokuapp.com/';
+
+  socket = io.connect(host);
 
   socket.on("connect", function() {
     return status.text("connected");

@@ -1,5 +1,5 @@
 mongoose = require 'mongoose'
-mongoose.connect 'mongodb://localhost/likes'
+mongoose.connect process.env.MONGOLAB_URI
 
 Schema = mongoose.Schema
 Like = mongoose.model 'likes', new Schema {

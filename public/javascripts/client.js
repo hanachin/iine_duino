@@ -1,11 +1,13 @@
 (function() {
-  var iine, send_iine, socket, status;
+  var host, iine, send_iine, socket, status;
 
   status = $("#status");
 
   iine = $("#iine");
 
-  socket = io.connect('http://localhost:3000');
+  host = location.href.match(/localhost/) ? "http://" + location.host + "/" : 'http://xhago.herokuapp.com/';
+
+  socket = io.connect(host);
 
   send_iine = function() {
     return socket.send("iine");

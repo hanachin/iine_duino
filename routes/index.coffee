@@ -9,6 +9,11 @@ exports.graph = (req, res) ->
 exports.monitor = (req, res) ->
   res.render "monitor", title: "(・∀・)イイネ! モニター"
 
+exports.count = (req, res) ->
+  (new Like).save (err) ->
+    # do nothing.
+  res.end ""
+
 exports.likes = (req, res) ->
   start = new Date req.params.start
   end = new Date req.params.end

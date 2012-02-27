@@ -23,14 +23,18 @@ app.configure "production", ->
 
 app.get "/", routes.index
 app.get "/graph", routes.graph
+app.get "/api/count", routes.count
 app.get "/monitor", routes.monitor
 app.get "/likes/:start/:end", routes.likes
 app.get "/admin", routes.admin
 
-app.listen 3000
+app.listen Number(process.env.PORT or 3000)
 
 count = 0
 io = require("socket.io").listen app
+io.configure ->
+  io.set("transports", ["xhr-polling"])
+  io.set("polling duration", 10)
 io.sockets.on "connection", (socket) ->
   socket.send count
   socket
@@ -38,6 +42,7 @@ io.sockets.on "connection", (socket) ->
       io.sockets.send ++count
       (new Like).save (err) ->
         # do nothing
+        console.log "mongo error", err
     .on "disconnect", ->
       # io.sockets.send "disconnected"
 

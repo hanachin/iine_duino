@@ -33,23 +33,32 @@
 
   app.get("/graph", routes.graph);
 
+  app.get("/api/count", routes.count);
+
   app.get("/monitor", routes.monitor);
 
   app.get("/likes/:start/:end", routes.likes);
 
   app.get("/admin", routes.admin);
 
-  app.listen(3000);
+  app.listen(Number(process.env.PORT || 3000));
 
   count = 0;
 
   io = require("socket.io").listen(app);
 
+  io.configure(function() {
+    io.set("transports", ["xhr-polling"]);
+    return io.set("polling duration", 10);
+  });
+
   io.sockets.on("connection", function(socket) {
     socket.send(count);
     return socket.on("message", function(msg) {
       io.sockets.send(++count);
-      return (new Like).save(function(err) {});
+      return (new Like).save(function(err) {
+        return console.log("mongo error", err);
+      });
     }).on("disconnect", function() {});
   });
 

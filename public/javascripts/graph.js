@@ -1,3 +1,4 @@
+(function() {
 
   $(function() {
     var countdown_format, countdown_id, date_format, start, stop, time_format;
@@ -76,3 +77,5 @@
       });
     });
   });
+
+}).call(this);

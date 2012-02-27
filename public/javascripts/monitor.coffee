@@ -19,7 +19,12 @@ plot = ->
   $.jqplot 'chart', [chart_data], chart_option
 setInterval plot, 1000
 
-socket = io.connect 'http://localhost:3000'
+host = if location.href.match /localhost/
+  "http://#{location.host}/"
+else
+  'http://xhago.herokuapp.com/'
+
+socket = io.connect host
 socket
   .on "connect", ->
     status.text "connected"
